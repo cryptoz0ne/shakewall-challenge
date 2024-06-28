@@ -33,9 +33,13 @@ const CurrencySelect = ({
   return (
     <div>
       <label>
-        Currency
+        
+        <span className="selectLabel">Currency</span>
         <Select
           options={data}
+          menuPlacement="auto"
+          menuPosition="fixed"
+          menuPortalTarget={document.body}
           defaultValue={defaultValue}
           onChange={(newValue) => onChange((newValue as CurrencyOption).value)}
         />

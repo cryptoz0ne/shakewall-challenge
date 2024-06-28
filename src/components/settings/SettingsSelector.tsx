@@ -136,8 +136,9 @@ const SettingsSelector = (): JSX.Element => {
 
     /* Button */
     return (
-      <button onClick={handleOpen}>
-        {selectedValue.country.name} - ({selectedValue.currency} - {selectedValue.language})
+      <button onClick={handleOpen} className="selectorButton">
+        <img src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${selectedValue.country.code}.svg`} width="20" alt="flag" />
+        <span>{selectedValue.country.name} - ({selectedValue.currency} - {selectedValue.language})</span>
       </button>
     );
   }, [selectedValue])
@@ -149,11 +150,14 @@ const SettingsSelector = (): JSX.Element => {
 
   // Render
   return (
-    <div>
+    <div className="settingsSelector">
       {button}
 
       {/* Modal */}
-      <Modal isOpen={modalIsOpen}>
+      <Modal
+        isOpen={modalIsOpen}
+        className="customModal"
+      >
         {/* Header */}
         <h2>Select your region, currency and language.</h2>
 
@@ -166,9 +170,11 @@ const SettingsSelector = (): JSX.Element => {
         {/* Language */}
         <LanguageSelect language={selectedValue.language} onChange={(language) => setTempValue({ ...tempValue, language })} />
 
-        {/* Close button */}
-        <button onClick={handleClose}>Close</button>
-        <button onClick={handleSave}>Save</button>
+        {/* Button Wrapper */}
+        <div className="buttonWrapper">
+          <button onClick={handleClose}>Close</button>
+          <button onClick={handleSave}>Save</button>
+        </div>
       </Modal>
     </div>
   );

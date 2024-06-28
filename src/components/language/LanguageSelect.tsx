@@ -41,9 +41,12 @@ const LanguageSelect = ({
   return (
     <div>
       <label>
-        Language
+        <span className="selectLabel">Language</span>
         <Select
           options={data}
+          menuPlacement="auto"
+          menuPosition="fixed"
+          menuPortalTarget={document.body}
           defaultValue={defaultValue}
           onChange={(newValue) => onChange((newValue as LanguageOption).value)}
         />

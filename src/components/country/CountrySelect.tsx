@@ -50,9 +50,12 @@ export const CountrySelect = ({
   return (
     <div>
       <label>
-        Country
+        <span className="selectLabel">Country</span>
         <Select
           options={data}
+          menuPlacement="auto"
+          menuPosition="fixed"
+          menuPortalTarget={document.body}
           components={{ ValueContainer: CountrySelectValueContainer, Option: CountrySelectOption }}
           defaultValue={defaultValue}
           onChange={(newValue) => onChange((newValue as CountryOption).value)}
