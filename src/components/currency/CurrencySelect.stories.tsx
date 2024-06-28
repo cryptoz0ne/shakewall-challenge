@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import CurrencySelect from "./CurrencySelect";
+import CurrencySelect, { CurrencySelectProps } from "./CurrencySelect";
 
 // Settings
 export default {
@@ -12,7 +12,7 @@ export default {
 } as Meta;
 
 // Main Story
-const Template: StoryFn<any> = (args) => <CurrencySelect {...args} />;
+const Template: StoryFn<CurrencySelectProps> = (args) => <CurrencySelect {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

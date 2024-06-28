@@ -3,7 +3,7 @@ import ISO_6391_Languages from "iso-639-1";
 import Select from "react-select";
 
 // Props
-interface LanguageSelectProps {
+export interface LanguageSelectProps {
   language: string;
   onChange: (language: string) => void;
 }

@@ -9,7 +9,7 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 // Please replace "any" with a proper type in this file (and where it is needed).
 
 // Props
-interface CountrySelectProps {
+export interface CountrySelectProps {
   value: Country;
   onChange: (value: Country) => void;
 }

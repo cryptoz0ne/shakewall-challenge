@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 
-import LanguageSelect from "./LanguageSelect";
+import LanguageSelect, { LanguageSelectProps } from "./LanguageSelect";
 
 // Settings
 export default {
@@ -12,7 +12,7 @@ export default {
 } as Meta;
 
 // Main Story
-const Template: StoryFn<any> = (args) => <LanguageSelect {...args} />;
+const Template: StoryFn<LanguageSelectProps> = (args) => <LanguageSelect {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};
