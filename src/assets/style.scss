@@ -1,0 +1,17 @@
+.customSelectOption {
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.customSelectValueContainer {
+  flex: 1;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}

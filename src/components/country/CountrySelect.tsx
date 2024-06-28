@@ -1,6 +1,6 @@
 import countries from "i18n-iso-countries";
 import Select from "react-select";
-import { CountrySelectOption } from "./CountrySelectOption";
+import { CountrySelectOption, CountrySelectValueContainer } from "./CountrySelectOption";
 
 // Register countries
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -17,6 +17,11 @@ interface CountrySelectProps {
 export interface Country {
   code: string;
   name: string;
+}
+
+export interface CountryOption {
+  readonly value: Country;
+  readonly label: string;
 }
 
 // Constants
@@ -48,11 +53,9 @@ export const CountrySelect = ({
         Country
         <Select
           options={data}
-          components={{ Option: CountrySelectOption }}
+          components={{ ValueContainer: CountrySelectValueContainer, Option: CountrySelectOption }}
           defaultValue={defaultValue}
-          onChange={(newValue) => {
-            onChange(newValue.value);
-          }}
+          onChange={(newValue) => onChange((newValue as CountryOption).value)}
         />
       </label>
     </div>

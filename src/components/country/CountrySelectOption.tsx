@@ -1,4 +1,5 @@
-import { OptionProps, components } from "react-select";
+import { OptionProps, ValueContainerProps, components } from "react-select";
+import { CountryOption } from './CountrySelect';
 
 /* --- [TASK] ---
 Country flags in select field
@@ -20,10 +21,28 @@ FURTHER DETAILS
 --- [TASK] --- */
 
 // Component
-export const CountrySelectOption = (props: OptionProps<any>) => {
+export const CountrySelectOption = (props: OptionProps<CountryOption>) => {
+  const data = props.data
+
   return (
-    <div>
-      <components.Option {...props} />
+    <div className="customSelectOption">
+      <components.Option {...props}>
+        {props.children}
+        <img src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${data.value.code}.svg`} width="20" alt="flag" />
+      </components.Option>
     </div>
   );
 };
+
+export const CountrySelectValueContainer = (props: ValueContainerProps<CountryOption>) => {
+  const value = props.getValue()
+
+  return (
+    <div className="customSelectValueContainer">
+      <components.ValueContainer {...props}>
+        {props.children}
+        <img src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${value[0].value.code}.svg`} width="20" alt="flag" />
+      </components.ValueContainer>
+    </div>
+  )
+}
