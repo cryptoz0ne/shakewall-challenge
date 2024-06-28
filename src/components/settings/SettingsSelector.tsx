@@ -127,7 +127,7 @@ const SettingsSelector = (): JSX.Element => {
     setModalIsOpen(false);
   };
 
-  const button = () => {
+  const button = useMemo(() => {
     // Increase render count.
     counter.current++;
 
@@ -140,7 +140,7 @@ const SettingsSelector = (): JSX.Element => {
         {selectedValue.country.name} - ({selectedValue.currency} - {selectedValue.language})
       </button>
     );
-  }
+  }, [selectedValue])
 
   const handleSave = () => {
     setModalIsOpen(false)
@@ -150,7 +150,7 @@ const SettingsSelector = (): JSX.Element => {
   // Render
   return (
     <div>
-      {button()}
+      {button}
 
       {/* Modal */}
       <Modal isOpen={modalIsOpen}>
