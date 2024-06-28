@@ -93,28 +93,24 @@ FURTHER DETAILS
 - Downgrading to React 17 is not an option 😉
 --- [TASK] --- */
 
+interface Settings {
+  country: Country
+  currency: string
+  language: string
+}
+
+const initialValue: Settings = {
+  country: DEFAULT_COUNTRY,
+  currency: DEFAULT_CURRENCY,
+  language: DEFAULT_LANGUAGE
+}
+
 // Component
 const SettingsSelector = (): JSX.Element => {
   // States
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<{
-    country: Country,
-    currency: string,
-    language: string
-  }>({
-    country: DEFAULT_COUNTRY,
-    currency: DEFAULT_CURRENCY,
-    language: DEFAULT_LANGUAGE
-  })
-  const [tempValue, setTempValue] = useState<{
-    country: Country,
-    currency: string,
-    language: string
-  }>({
-    country: DEFAULT_COUNTRY,
-    currency: DEFAULT_CURRENCY,
-    language: DEFAULT_LANGUAGE
-  })
+  const [selectedValue, setSelectedValue] = useState<Settings>(initialValue)
+  const [tempValue, setTempValue] = useState<Settings>(initialValue)
 
   // Render Counter
   const counter = useRef(0);
