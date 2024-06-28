@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import { useMemo, useState, useRef } from "react";
 import Modal from "react-modal";
-import CountrySelect, { DEFAULT_COUNTRY } from "../country/CountrySelect";
+import CountrySelect, { DEFAULT_COUNTRY, Country } from "../country/CountrySelect";
 import LanguageSelect, { DEFAULT_LANGUAGE } from "../language/LanguageSelect";
 import CurrencySelect, { DEFAULT_CURRENCY } from "../currency/CurrencySelect";
 
@@ -96,10 +96,25 @@ FURTHER DETAILS
 // Component
 const SettingsSelector = (): JSX.Element => {
   // States
-  const [modalIsOpen, setModalIsOpen] = React.useState<any>(false);
-  const [selectedCountry, setCountry] = React.useState<any>(DEFAULT_COUNTRY);
-  const [selectedCurrency, setCurrency] = React.useState<any>(DEFAULT_CURRENCY);
-  const [selectedLanguage, setLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState<{
+    country: Country,
+    currency: string,
+    language: string
+  }>({
+    country: DEFAULT_COUNTRY,
+    currency: DEFAULT_CURRENCY,
+    language: DEFAULT_LANGUAGE
+  })
+  const [tempValue, setTempValue] = useState<{
+    country: Country,
+    currency: string,
+    language: string
+  }>({
+    country: DEFAULT_COUNTRY,
+    currency: DEFAULT_CURRENCY,
+    language: DEFAULT_LANGUAGE
+  })
 
   // Render Counter
   const counter = useRef(0);
@@ -122,10 +137,15 @@ const SettingsSelector = (): JSX.Element => {
     /* Button */
     return (
       <button onClick={handleOpen}>
-        {selectedCountry.name} - ({selectedCurrency} - {selectedLanguage})
+        {selectedValue.country.name} - ({selectedValue.currency} - {selectedValue.language})
       </button>
     );
-  };
+  }
+
+  const handleSave = () => {
+    setModalIsOpen(false)
+    setSelectedValue({ ...tempValue })
+  }
 
   // Render
   return (
@@ -138,16 +158,17 @@ const SettingsSelector = (): JSX.Element => {
         <h2>Select your region, currency and language.</h2>
 
         {/* Country */}
-        <CountrySelect value={selectedCountry} onChange={setCountry} />
+        <CountrySelect value={selectedValue.country} onChange={(country) => setTempValue({ ...tempValue, country })} />
 
         {/* Currency */}
-        <CurrencySelect value={selectedCurrency} onChange={setCurrency} />
+        <CurrencySelect value={selectedValue.currency} onChange={(currency) => setTempValue({ ...tempValue, currency })} />
 
         {/* Language */}
-        <LanguageSelect language={selectedLanguage} onChange={setLanguage} />
+        <LanguageSelect language={selectedValue.language} onChange={(language) => setTempValue({ ...tempValue, language })} />
 
         {/* Close button */}
         <button onClick={handleClose}>Close</button>
+        <button onClick={handleSave}>Save</button>
       </Modal>
     </div>
   );

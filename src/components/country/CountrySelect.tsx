@@ -10,12 +10,17 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 // Props
 interface CountrySelectProps {
-  value?: any;
-  onChange?: (value: any) => void;
+  value: Country;
+  onChange: (value: Country) => void;
+}
+
+export interface Country {
+  code: string;
+  name: string;
 }
 
 // Constants
-export const DEFAULT_COUNTRY = {
+export const DEFAULT_COUNTRY: Country = {
   code: "US",
   name: "United States of America",
 };
